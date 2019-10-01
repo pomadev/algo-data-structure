@@ -7,6 +7,7 @@ import (
 	"strconv"
 )
 
+// fmt.Scanでは間に合わない
 var sc = bufio.NewScanner(os.Stdin)
 
 func nextLine() string {
