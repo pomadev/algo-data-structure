@@ -21,11 +21,13 @@ var (
 
 func enqueue(x process) {
 	p[tail] = x
+	// n + 1 -> 配列のサイズ
 	tail = (tail + 1) % (n + 1)
 }
 
 func dequeue() process {
 	x := p[head]
+	// n + 1 -> 配列のサイズ
 	head = (head + 1) % (n + 1)
 	return x
 }
