@@ -4,14 +4,14 @@ import "fmt"
 
 func binarySearch(a []int, key int) bool {
 	left := 0
-	right := len(a)
-	for left < right {
+	right := len(a) - 1
+	for left <= right {
 		mid := (left + right) / 2
 		if a[mid] == key {
 			return true
 		}
 		if key < a[mid] {
-			right = mid
+			right = mid - 1
 		} else {
 			left = mid + 1
 		}
