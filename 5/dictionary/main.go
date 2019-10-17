@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strconv"
 )
@@ -19,19 +20,23 @@ func nextInt() int {
 	return n
 }
 
-type Order struct {
-	order   string
-	content string
-}
-
 func main() {
 	scanner.Split(bufio.ScanWords)
 
 	n := nextInt()
 
-	s := make([]Order, n)
-	for i := range s {
-		s[i].order = nextWord()
-		s[i].content = nextWord()
+	m := make(map[string]bool)
+	for i := 0; i < n; i++ {
+		order, content := nextWord(), nextWord()
+		if order == "insert" {
+			m[content] = true
+		} else {
+			_, ok := m[content]
+			if ok {
+				fmt.Println("yes")
+			} else {
+				fmt.Println("no")
+			}
+		}
 	}
 }
