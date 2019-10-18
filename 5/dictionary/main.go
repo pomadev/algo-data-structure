@@ -40,3 +40,15 @@ func main() {
 		}
 	}
 }
+
+func h1(key, m int) int {
+	return key % m
+}
+
+func h2(key, m int) int {
+	return 1 + (key % (m - 1))
+}
+
+func h(key, m, i int) int {
+	return (h1(key, m) + i*h2(key, m)) % m
+}
