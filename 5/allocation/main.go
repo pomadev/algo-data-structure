@@ -24,10 +24,10 @@ func check(p int) int {
 
 func solve() int {
 	left, right := 0, 100000*10000
-	for left+1 < right {
+	for left+1 < right { // 全ての範囲を調べるまで
 		mid := (left + right) / 2
 		v := check(mid)
-		if v >= n {
+		if v >= n { // 全ての荷物を積めている場合
 			right = mid
 		} else {
 			left = mid
