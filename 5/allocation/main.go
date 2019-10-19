@@ -8,13 +8,13 @@ var (
 )
 
 func check(p int) int {
-	i := 0
+	i := 0 // 荷物の個数
 	for j := 0; j < k; j++ {
-		s := 0
-		for s+w[i] <= p {
+		s := 0            // 1台に積む荷物の重さ
+		for s+w[i] <= p { // 最大積載量を超えてはいけない
 			s += w[i]
 			i++
-			if i == n {
+			if i == n { // 全ての荷物を積めた場合
 				return n
 			}
 		}
