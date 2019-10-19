@@ -23,7 +23,7 @@ func check(p int) int {
 }
 
 func solve() int {
-	left, right := 0, 100000*100000
+	left, right := 0, 100000*10000
 	for left+1 < right {
 		mid := (left + right) / 2
 		v := check(mid)
