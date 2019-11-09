@@ -6,8 +6,6 @@ import (
 	"strconv"
 )
 
-var n int
-
 var scanner = bufio.NewScanner(os.Stdin)
 
 func nextStr() string {
@@ -18,6 +16,21 @@ func nextStr() string {
 func nextInt() int {
 	n, _ := strconv.Atoi(nextStr())
 	return n
+}
+
+type Node struct {
+	key                 int
+	parent, left, right *Node
+}
+
+var (
+	n         int
+	root, pre *Node
+	T         []Node
+)
+
+func insert(k int) {
+
 }
 
 func main() {
