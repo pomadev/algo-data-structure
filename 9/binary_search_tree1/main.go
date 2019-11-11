@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"os"
 	"strconv"
@@ -26,14 +27,14 @@ type Node struct {
 
 var (
 	n         int
-	root, pre *Node
+	root, NIL *Node
 )
 
 func insert(k int) {
-	y, x := pre, root
 	z := &Node{
 		key: k,
 	}
+	x, y := root, NIL
 	for x != nil {
 		y = x
 		if z.key < x.key {
@@ -43,7 +44,7 @@ func insert(k int) {
 		}
 	}
 	z.parent = y
-	if y == nil {
+	if y == NIL {
 		root = z
 	} else {
 		if z.key < y.key {
@@ -54,11 +55,13 @@ func insert(k int) {
 	}
 }
 
+var b bytes.Buffer
+
 func preOrder(u *Node) {
 	if u == nil {
 		return
 	}
-	fmt.Printf(" %d", u.key)
+	b.Write([]byte(fmt.Sprintf(" %d", u.key)))
 	preOrder(u.left)
 	preOrder(u.right)
 }
@@ -68,7 +71,7 @@ func inOrder(u *Node) {
 		return
 	}
 	inOrder(u.left)
-	fmt.Printf(" %d", u.key)
+	b.Write([]byte(fmt.Sprintf(" %d", u.key)))
 	inOrder(u.right)
 }
 
@@ -83,8 +86,10 @@ func main() {
 			insert(nextInt())
 		} else {
 			inOrder(root)
+			b.WriteTo(os.Stdout)
 			fmt.Println()
 			preOrder(root)
+			b.WriteTo(os.Stdout)
 			fmt.Println()
 		}
 	}
