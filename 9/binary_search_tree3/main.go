@@ -67,6 +67,25 @@ func find(u *Node, k int) *Node {
 	return u
 }
 
+func getMinimum(u *Node) *Node {
+	for u.l != nil {
+		u = u.l
+	}
+	return u
+}
+
+func getSuccessor(u *Node) *Node {
+	if u.r != nil {
+		return getMinimum(u.r)
+	}
+	y := u.p
+	for y != nil && u == y.r {
+		u = y
+		y = y.p
+	}
+	return y
+}
+
 func preOrder(u *Node) {
 	if u == nil {
 		return
