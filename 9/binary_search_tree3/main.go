@@ -86,6 +86,33 @@ func getSuccessor(u *Node) *Node {
 	return y
 }
 
+func delete(z *Node) {
+	var x, y *Node
+	if z.l == nil || z.r == nil {
+		y = z
+	} else {
+		y = getSuccessor(z)
+	}
+	if y.l != nil {
+		x = y.l
+	} else {
+		x = y.r
+	}
+	if x != nil {
+		x.p = y.p
+	}
+	if y.p == nil {
+		r = x
+	} else if y == y.p.l {
+		y.p.l = x
+	} else {
+		y.p.r = x
+	}
+	if y != z {
+		z.key = y.key
+	}
+}
+
 func preOrder(u *Node) {
 	if u == nil {
 		return
@@ -121,7 +148,7 @@ func main() {
 				fmt.Println("no")
 			}
 		case "delete":
-			nextInt()
+			delete(find(r, nextInt()))
 		case "print":
 			inOrder(r)
 			b.WriteTo(os.Stdout)
