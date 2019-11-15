@@ -87,27 +87,33 @@ func getSuccessor(u *Node) *Node {
 }
 
 func delete(z *Node) {
-	var x, y *Node
+	var x, y *Node // x: 削除対象の子 y: 削除対象
+
 	if z.l == nil || z.r == nil {
 		y = z
 	} else {
 		y = getSuccessor(z)
 	}
+
 	if y.l != nil {
 		x = y.l
 	} else {
 		x = y.r
 	}
+
+	// xの親をyの親にする
 	if x != nil {
 		x.p = y.p
 	}
+
 	if y.p == nil {
-		r = x
+		r = x // yが根の場合
 	} else if y == y.p.l {
-		y.p.l = x
+		y.p.l = x // yが親の左の子の場合
 	} else {
-		y.p.r = x
+		y.p.r = x // yが親の右の子の場合
 	}
+
 	if y != z {
 		z.key = y.key
 	}
