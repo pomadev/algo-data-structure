@@ -7,36 +7,32 @@ import (
 	"strconv"
 )
 
-// fmt.Scanでは間に合わない
 var sc = bufio.NewScanner(os.Stdin)
 
-func nextLine() string {
-	sc.Scan()
-	return sc.Text()
-}
-
 func nextInt() int {
-	i, _ := strconv.Atoi(nextLine())
-	return i
+	sc.Scan()
+	n, _ := strconv.Atoi(sc.Text())
+	return n
 }
 
 func main() {
-	n := nextInt()
+	sc.Split(bufio.ScanWords)
 
+	n := nextInt()
 	r := make([]int, n)
-	for i := range r {
+	for i := 0; i < n; i++ {
 		r[i] = nextInt()
 	}
 
-	maxv, minv := -2000000000, r[0]
+	mint, maxd := 0, r[1]-r[0]
 	for i := 1; i < n; i++ {
-		if r[i] - minv > maxv {
-			maxv = r[i]-minv
+		if maxd < r[i]-r[mint] {
+			maxd = r[i] - r[mint]
 		}
-		if r[i] < minv {
-			minv = r[i]
+		if r[i] < r[mint] {
+			mint = i
 		}
 	}
 
-	fmt.Println(maxv)
+	fmt.Println(maxd)
 }
