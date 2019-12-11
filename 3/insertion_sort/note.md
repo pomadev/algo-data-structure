@@ -8,4 +8,4 @@
 [Goでの安定ソート関数](https://golang.org/pkg/sort/#SliceStable)
 
 ## 挿入ソート
-
+![挿入ソート](./insertion.png)
